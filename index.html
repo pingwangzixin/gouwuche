@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="meituan">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>美团外卖</title>
+    <link rel="stylesheet" href="./static/css/reset.css">
+    <link rel="stylesheet" href="./static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./static/css/main.css">
+    <script src="./static/js/jquery.min.js"></script>
+    <script src="./static/js/bootstrap.min.js"></script>
+    <script src="./static/js/angular.min.js"></script>
+    <script src="./static/js/jquery.min.js"></script>
+    <script src="./static/js/main.js"></script>
+    <style>
+        .xuanzhuan{margin:0 20px 50px 50px;}
+    </style>
+</head>
+
+<body ng-controller="canpin">
+
+    <!-- 导航开始  -->
+    <div class="navbar navbar-default navbar-fixed-top row container-fluid">
+        <div class="col-xs-4 container fh"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></div>
+        <div class="col-xs-4 container sh">田老师</div>
+        <div class="col-xs-4 container xq">商户详情</div>
+    </div>
+
+    <!--内容开始-->
+    <div class="content row">
+        <!--  中间左侧选项卡 -->
+        <div class="col-xs-4 caipin">
+            <ul class="cpmclist">
+                <li class="active">主食</li>
+                <li>套餐</li>
+            </ul>
+        </div>
+        <!--   中间餐品列表     -->
+        <div class="col-xs-8 canlist">
+            <div class="cplist">
+                <ul>
+                    <li ng-repeat="item in cp" class="meishi">
+                        <img ng-src="{{item.img}}" alt="">
+                        <span class="spmc" ng-bind="item.name"></span>
+                        <span class="spjg">￥<span class="price">{{item.price}}</span></span>
+                        <span class="xiaoji">小计：<span class="xj">0</span></span>
+                        <button class="jian" ng-click="jsgw($index)"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
+                        <input type="text" class="sl" value="0">
+                        <button class="jia" ng-click="buy($index)"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+                    </li>
+                </ul>
+                <ul class="ulhide">
+                    <li ng-repeat="item in tc" class="meishi">
+                        <img ng-src="{{item.img}}" alt="">
+                        <span class="spmc" ng-bind="item.name"></span>
+                        <span class="spjg">￥<span class="price">{{item.price}}</span></span>
+                        <span class="xiaoji">小计：<span class="xj">0</span></span>
+                        <button class="jian" ng-click="jsgwe($index)"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
+                        <input type="text" class="sl" value="0">
+                        <button class="jia" ng-click="mai($index)"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+                    </li>
+                </ul>
+            </div>
+            <div class="xuanzhuan" style="display:none;">
+                <img src="../1/static/img/xuanzhuan.gif" alt="">
+            </div>
+        </div>
+    </div>
+    <!--  底部总价和提交  -->
+    <div class="footer row">
+        <div class="col-xs-8 zongji">
+            <div class="car">
+                <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                <span class="num">0</span>
+            </div>
+            <div class="zongjia">共￥<span class="zj">0</span></div>
+        </div>
+        <div class="col-xs-4 tijiao"><span class="tj">提交</span></div>
+    </div>
+    <!--  隐藏的层  -->
+    <div class="hiden" ng-click="hiden"></div>
+    <div class="shsp">
+        <div class="gb"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></div>
+        <div class="gwc">
+            <p>已购买：</p>
+            <ul>
+                <li ng-repeat="i in cart">
+                    <img ng-src="{{i.img}}" alt="">
+                    <span class="ygname">{{i.name}} * {{goodsnum[i.goodsid]}}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="zhifu">
+            <p>请选择支付方式：</p>
+            <span class="glyphicon glyphicon-remove guanbi"  aria-hidden="true"></span>
+            <form action="#">
+                <input type="submit" value="提交">
+            </form>
+    </div>
+    <script src="./static/js/faskclick.js"></script>
+</body>
+
+</html>
